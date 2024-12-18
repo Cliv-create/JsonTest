@@ -50,7 +50,7 @@ namespace JsonTest
         // if (DEBUG_MODE == true) Console.WriteLine("");
         static void Main(string[] args)
         {
-            
+            RemoveEmptyRecords();
 
             var goods = ReadAll();
             var newGood = new Goods("Xiaomi", "Huanan", "Huanan-last-good", 256, 10);
@@ -63,6 +63,7 @@ namespace JsonTest
             Console.WriteLine("Current Users (created Xiaomi and Samsung):");
             goods.ForEach(goods => Console.WriteLine($"Brand: {goods.Brand}, Model: {goods.Model}\nSubmodel: {goods.Submodel}, Memory: {goods.Memory}, Quantity: {goods.Quantity}\n"));
             
+            ReadAll();
             var goodToEdit = goods.Find(u => u.Brand == "Xiaomi");
             if (goodToEdit != null)
             {
@@ -72,12 +73,13 @@ namespace JsonTest
             SaveAll(goods);
             }
 
-
+            ReadAll();
             goods.RemoveAll(u => u.Brand == "Huawei");
             Console.WriteLine("Current Users (removed Huawei):");
             goods.ForEach(goods => Console.WriteLine($"Brand: {goods.Brand}, Model: {goods.Model}\nSubmodel: {goods.Submodel}, Memory: {goods.Memory}, Quantity: {goods.Quantity}\n"));
             SaveAll(goods);
 
+            ReadAll();
             Console.WriteLine("Current Users (after all edits):");
             goods.ForEach(goods => Console.WriteLine($"Brand: {goods.Brand}, Model: {goods.Model}\nSubmodel: {goods.Submodel}, Memory: {goods.Memory}, Quantity: {goods.Quantity}"));
             // RemoveEmptyRecords();
